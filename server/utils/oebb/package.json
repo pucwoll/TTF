@@ -1,0 +1,57 @@
+{
+	"name": "oebb",
+	"version": "1.0.0",
+	"description": "Austrian Federal Railways (ÖBB) API client.",
+	"keywords": [
+		"api",
+		"austria",
+		"bahn",
+		"bundesbahn",
+		"client",
+		"oebb",
+		"railway",
+		"train",
+		"öbb",
+		"österreich",
+		"österreichische"
+	],
+	"homepage": "https://github.com/juliuste/oebb",
+	"bugs": "https://github.com/juliuste/oebb/issues",
+	"repository": "juliuste/oebb",
+	"license": "ISC",
+	"author": "Julius Tens <mail@juliustens.eu>",
+	"files": [
+		"lib/*"
+	],
+	"main": "lib/index.js",
+	"scripts": {
+		"check-deps": "depcheck",
+		"fix": "eslint --fix lib test.js",
+		"lint": "eslint lib test.js",
+		"prepublishOnly": "npm test",
+		"test": "npm run lint && npm run check-deps && node test"
+	},
+	"dependencies": {
+		"fpti-util": "^0.1.0",
+		"got": "^9.6.0",
+		"lodash": "^4.17.15",
+		"luxon": "^1.19.3",
+		"query-string": "^6.8.3"
+	},
+	"devDependencies": {
+		"depcheck": "^0.8.3",
+		"eslint": "^6.6.0",
+		"eslint-config-standard": "^14.1.0",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-node": "^10.0.0",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-standard": "^4.0.1",
+		"fpti-tests": "0.0.0",
+		"tape": "^4.11.0",
+		"tape-promise": "^4.0.0",
+		"validate-fptf": "^3.0.0"
+	},
+	"engines": {
+		"node": ">=10"
+	}
+}

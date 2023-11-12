@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Hotel {
+  id      Int    @id @default(autoincrement())
+  name    String
+  station String
+  img     String
+
+  hotelTransfers HotelTransfer[]
+  boats Boat[]
+  busTimes BusTime[]
+
+  @@map("hotels")
+}
+
+model Journey {
+  uuid      String    @id
+  data    String @db.Text
+  arrival_station_id String
+
+  @@map("journeys")
+}
+
+
+model TaxiCompany {
+  id         Int        @id @default(autoincrement())
+  name       String
+
+  cars Car[]
+
+  @@map("taxi_companies")
+
+}
+
+model Car {
+  id    Int    @id @default(autoincrement())
+  taxi_company   TaxiCompany @relation(fields: [taxi_company_id], references: [id])
+  taxi_company_id Int
+
+  max_people Int
+  station_id String
+  time String
+  price Int?
+
+  @@map("cars")
+}
+
+model HotelTransfer {
+  id    Int    @id @default(autoincrement())
+  hotel   Hotel @relation(fields: [hotel_id], references: [id])
+  hotel_id Int
+
+  price Int
+
+  @@map("hotel_transfers")
+}
+
+model Boat {
+  id    Int    @id @default(autoincrement())
+  hotel   Hotel @relation(fields: [hotel_id], references: [id])
+  hotel_id Int
+
+  price Int
+  times String @db.Text
+
+  @@map("boats")
+}
+
+
+model BusTime {
+  id    Int    @id @default(autoincrement())
+  hotel   Hotel @relation(fields: [hotel_id], references: [id])
+  hotel_id Int
+
+  price Int
+  hour Int
+  minute Int
+
+  @@map("bus_times")
+}
